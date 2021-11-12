@@ -1,16 +1,17 @@
 <?php
-	include_once '../../DB/ControladorBD.php';
-
-	$Con = conectar();
+	//Connection to DB
+	include_once '../../DB/DB_driver.php';
+	$Con = connect();
+	//SELECT Operation
 	$SQL ="SELECT * FROM engagement ORDER BY id_visit ASC";
-	$resultado = consultar($Con,$SQL);
+	$Result = Consult($Con,$SQL);//Execute SQL statement
 	//Metodo buscar
 	if(isset($_POST['btn_buscar']))
 	{
 		$buscar_text=$_POST['buscar'];
 
 		$SQL ="SELECT * FROM engagement WHERE ip LIKE '%$buscar_text%';";
-		$resultado = consultar($Con,$SQL);
+		$Result = Consult($Con,$SQL);
 	}
 ?>
 
@@ -39,13 +40,13 @@
 				<td>Fecha</td>
 				<td colspan="2">Acción</td>
 			</tr>
-			<?php foreach($resultado as $fila):?>
+			<?php foreach($Result as $Row):?>
 				<tr >
-					<td><?php echo $fila['id_visit']; ?></td>
-					<td><?php echo $fila['ip']; ?></td>
-					<td><?php echo $fila['fecha']; ?></td>
-					<td><a href="update.php?id_visit=<?php echo $fila['id_visit']; ?>"  class="btn__update" >Editar</a></td>
-					<td><a href="delete.php?id_visit=<?php echo $fila['id_visit']; ?>" class="btn__delete">Eliminar</a></td>
+					<td><?php echo $Row['id_visit']; ?></td>
+					<td><?php echo $Row['ip']; ?></td>
+					<td><?php echo $Row['fecha']; ?></td>
+					<td><a href="update.php?id_visit=<?php echo $Row['id_visit']; ?>"  class="btn__update" >Editar</a></td>
+					<td><a href="delete.php?id_visit=<?php echo $Row['id_visit']; ?>" class="btn__delete">Eliminar</a></td>
 				</tr>
 			<?php endforeach ?>
 		</table>

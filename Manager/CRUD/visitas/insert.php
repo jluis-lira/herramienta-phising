@@ -1,6 +1,8 @@
 <?php 
-	include_once '../../DB/ControladorBD.php';
-	
+	//Connection to DB
+	include_once '../../DB/DB_driver.php';
+	$Con =connect();
+	//INSERT Operation
 	if(isset($_POST['guardar'])){
 		$ip = $_POST['ip'];
 		$fecha = $_POST['fecha'];
@@ -8,7 +10,7 @@
 		if(!empty($ip) && !empty($fecha) ){
 			
 			$SQL ="INSERT INTO engagement VALUES(NULL,'$ip','$fecha')";
-			$resultado = consultar($Con,$SQL);
+			$Result = Consult($Con,$SQL);
 				
 			header('Location: index.php');
 			

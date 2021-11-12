@@ -1,16 +1,16 @@
 <?php
-	function  conectar (){
-		$Resultado = parse_ini_file("ConfigBD.ini");
-		$Server=$Resultado['Servidor'];
-		$User=$Resultado['Usuario'];
-		$Password=$Resultado['Password'];
-		$BD=$Resultado['BD'];
+	function  connect (){
+		$Result = parse_ini_file("ConfigBD.ini");
+		$Server=$Result['Servidor'];
+		$User=$Result['Usuario'];
+		$Password=$Result['Password'];
+		$BD=$Result['BD'];
 
 		$Con = mysqli_connect($Server,$User,$Password,$BD);
 		return $Con;
 	}
 
-	function consultar($Con, $SQL){		
+	function Consult($Con, $SQL){		
 		$Result= mysqli_query($Con,$SQL) Or die (mysqli_error($Con));
 		return $Result;
 	}
@@ -21,16 +21,16 @@
 
 	function engagement (){
         //Visitas
-		$Con = Conectar();
+		$Con = connect();
 		date_default_timezone_set("America/Mexico_city");
 		$ip = $_SERVER['REMOTE_ADDR'];
 		$SQL ="SELECT * FROM engagement WHERE ip='$ip' ORDER BY id_visit DESC;";
-		$Respuesta = Consultar($Con,$SQL);
+		$Respuesta = Consult($Con,$SQL);
 		$Registros = mysqli_num_rows($Respuesta);
 
 		if($Registros==0){
 		$SQL ="INSERT INTO engagement (ip,fecha) VALUES ('$ip',now());";
-		Consultar($Con,$SQL);				
+		Consult($Con,$SQL);				
 		}else{
             $row=mysqli_fetch_row($Respuesta);
             $fRegistro=$row[2];
@@ -39,11 +39,11 @@
             $fNueva=date("Y-m-d H:i:s",$fNueva);
             if($fActual>=$fNueva){
               $SQL ="INSERT INTO engagement (ip,fecha) VALUES ('$ip',now());";
-              Consultar($Con,$SQL);
+              Consult($Con,$SQL);
             }
           }
           $SQL="SELECT * FROM engagement;";
-          $contVisitas=Consultar($Con,$SQL);
+          $contVisitas=Consult($Con,$SQL);
           $visitas = mysqli_num_rows($contVisitas);
 
 		  $Now=date("d-m-Y");

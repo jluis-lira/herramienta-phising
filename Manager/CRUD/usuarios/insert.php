@@ -1,8 +1,8 @@
 <?php 
-	include_once '../../DB/ControladorBD.php';
-	
-	$Con =conectar();
-
+	//Connection to DB
+	include_once '../../DB/DB_driver.php';
+	$Con =connect();
+	//Insert Operation
 	if(isset($_POST['guardar'])){
 		$id_usuario = $_POST['id_usuario'];
 		$username = $_POST['username'];
@@ -20,7 +20,7 @@
 			
 			$SQL ="INSERT INTO usuarios VALUES(NULL,'$username','$contrasena','$nombre','$apellido',
 			$numero,'$correo',$status,'$tipo')";
-			$resultado = consultar($Con,$SQL);
+			$Result = Consult($Con,$SQL);
 
 			header('Location: index.php');
 			

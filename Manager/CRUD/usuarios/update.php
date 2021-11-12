@@ -1,12 +1,12 @@
 <?php
-	include_once '../../DB/ControladorBD.php';
-
-	$Con =conectar();
-	
+	//Connection to DB
+	include_once '../../DB/DB_driver.php';
+	$Con =connect();
+	//Select Operation
 	if(isset($_GET['id_usuario'])){
 		$id_usuario=(int) $_GET['id_usuario'];
 		$SQL ="SELECT * FROM usuarios WHERE id_usuario = $id_usuario;";
-		$resultado = mysqli_fetch_array(consultar($Con,$SQL));
+		$Result = mysqli_fetch_array(Consult($Con,$SQL));
 	}else{
 		header('Location: index.php');
 	}
@@ -31,7 +31,7 @@
 			contrasena=$contrasena,nombre=$nombre,apellido=$apellido,numero=$numero,
 			correo=$correo,status=$status,tipo=$tipo 
 			WHERE id_usuario=$id_usuario;";
-			consultar($Con,$SQL);
+			Consult($Con,$SQL);
 			header('Location: index.php');
 			
 		}else{
@@ -52,23 +52,23 @@
 		<h2>EDITAR USUARIO</h2>
 		<form action="" method="post">
 			<div class="form-group">
-				<input type="text" name="id_usuario" value="<?php if($resultado) echo $resultado['id_usuario']; ?>" class="input__text">
-				<input type="text" name="nombre" value="<?php if($resultado) echo $resultado['nombre']; ?>" class="input__text">
+				<input type="text" name="id_usuario" value="<?php if($Result) echo $Result['id_usuario']; ?>" class="input__text">
+				<input type="text" name="nombre" value="<?php if($Result) echo $Result['nombre']; ?>" class="input__text">
 			</div>
 			<div class="form-group">
-				<input type="text" name="username" value="<?php if($resultado) echo $resultado['username']; ?>" class="input__text">
-				<input type="text" name="apellido" value="<?php if($resultado) echo $resultado['apellido']; ?>" class="input__text">
+				<input type="text" name="username" value="<?php if($Result) echo $Result['username']; ?>" class="input__text">
+				<input type="text" name="apellido" value="<?php if($Result) echo $Result['apellido']; ?>" class="input__text">
 			</div>
 			<div class="form-group">
-				<input type="text" name="contrasena" value="<?php if($resultado) echo $resultado['contrasena']; ?>" class="input__text">
-				<input type="text" name="numero" value="<?php if($resultado) echo $resultado['numero']; ?>" class="input__text">
+				<input type="text" name="contrasena" value="<?php if($Result) echo $Result['contrasena']; ?>" class="input__text">
+				<input type="text" name="numero" value="<?php if($Result) echo $Result['numero']; ?>" class="input__text">
 			</div>
 			<div class="form-group">
-				<input type="text" name="correo" value="<?php if($resultado) echo $resultado['correo']; ?>" class="input__text">
-				<input type="text" name="status" value="<?php if($resultado) echo $resultado['status']; ?>" class="input__text">
+				<input type="text" name="correo" value="<?php if($Result) echo $Result['correo']; ?>" class="input__text">
+				<input type="text" name="status" value="<?php if($Result) echo $Result['status']; ?>" class="input__text">
 			</div>
 			<div class="form-group">
-				<input type="text" name="tipo" value="<?php if($resultado) echo $resultado['tipo']; ?>" class="input__text">
+				<input type="text" name="tipo" value="<?php if($Result) echo $Result['tipo']; ?>" class="input__text">
 			</div>
 			<div class="btn__group">
 				<a href="index.php" class="btn btn__danger">Cancelar</a>

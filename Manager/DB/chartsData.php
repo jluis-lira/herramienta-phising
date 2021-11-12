@@ -1,7 +1,7 @@
 <?php
-    include_once 'ControladorBD.php';//Connection to DB
+    include_once 'DB_driver.php';//Connection to DB
     
-	$Con =conectar();
+	$Con =connect();
 
     date_default_timezone_set("America/Mexico_city");//set up TIMEZONE
 
@@ -17,19 +17,19 @@
 
     //Consultas SQL
 
-    //Consultar Visitas últimos 15 Dias
+    //Consult Visitas últimos 15 Dias
     //******La funcion DATE_FORMATE depende del DBM*****
     $SQLdays="SELECT DATE_FORMAT(fecha,'%b %d') AS Dia,COUNT(DAY(fecha)) AS Visitas 
     FROM engagement WHERE fecha BETWEEN '$days15ago' AND now() GROUP by Dia Order by fecha;";
-    $dataDays= mysqli_fetch_all(consultar($Con,$SQLdays));
-    //Consultar Visitas últimos 6 meses
+    $dataDays= mysqli_fetch_all(Consult($Con,$SQLdays));
+    //Consult Visitas últimos 6 meses
     $SQLmonths="SELECT DATE_FORMAT(fecha,'%b %Y') AS Mes,COUNT(MONTH(fecha)) AS Visitas 
     FROM engagement WHERE fecha BETWEEN '$months6ago' AND now() GROUP by Mes Order by fecha;";
-    $dataMonths= mysqli_fetch_all(consultar($Con,$SQLmonths));
-    //Consultar Visitas en una hora especifica durante los últimos 6 meses
+    $dataMonths= mysqli_fetch_all(Consult($Con,$SQLmonths));
+    //Consult Visitas en una hora especifica durante los últimos 6 meses
     $SQLhours="SELECT DATE_FORMAT(fecha,'%H h') AS hora, COUNT(HOUR(fecha)) AS Visitas 
     FROM engagement WHERE fecha BETWEEN '$months6ago' AND now() GROUP by hora ORDER BY hora;";
-    $dataHours= mysqli_fetch_all(consultar($Con,$SQLhours));
+    $dataHours= mysqli_fetch_all(Consult($Con,$SQLhours));
     
     //Asignacion de Valores
     

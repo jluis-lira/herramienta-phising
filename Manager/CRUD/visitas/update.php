@@ -1,11 +1,12 @@
 <?php
-	include_once '../../DB/ControladorBD.php';
-	
-	$Con =conectar();
+	//Connection to DB
+	include_once '../../DB/DB_driver.php';
+	$Con =connect();
+	//SELECT Operation
 	if(isset($_GET['id_visit'])){
 		$id_visit=(int) $_GET['id_visit'];
 		$SQL ="SELECT * FROM engagement WHERE id_visit = $id_visit;";
-		$resultado = mysqli_fetch_array(consultar($Con,$SQL));
+		$Result = mysqli_fetch_array(Consult($Con,$SQL));
 	}else{
 		header('Location: index.php');
 	}
@@ -19,7 +20,7 @@
 		if(!empty($id_visit) && !empty($ip) && !empty($fecha) ){
 
 			$SQL =" UPDATE engagement SET id_visit=$id_visit,ip='$ip',fecha='$fecha' WHERE id_visit=$id_visit;";
-			consultar($Con,$SQL);
+			Consult($Con,$SQL);
 			header('Location: index.php');
 			
 		}else{
@@ -40,11 +41,11 @@
 		<h2>EDITAR VISITA</h2>
 		<form action="" method="post">
 			<div class="form-group">
-				<input type="text" name="id_visit" value="<?php if($resultado) echo $resultado['id_visit']; ?>" class="input__text">
-				<input type="text" name="ip" value="<?php if($resultado) echo $resultado['ip']; ?>" class="input__text">
+				<input type="text" name="id_visit" value="<?php if($Result) echo $Result['id_visit']; ?>" class="input__text">
+				<input type="text" name="ip" value="<?php if($Result) echo $Result['ip']; ?>" class="input__text">
 			</div>
 			<div class="form-group">
-				<input type="text" name="fecha" value="<?php if($resultado) echo $resultado['fecha']; ?>" class="input__text">
+				<input type="text" name="fecha" value="<?php if($Result) echo $Result['fecha']; ?>" class="input__text">
 			</div>
 			<div class="btn__group">
 				<a href="index.php" class="btn btn__danger">Cancelar</a>

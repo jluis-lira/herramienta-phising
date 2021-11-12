@@ -1,17 +1,17 @@
 <?php
-	include_once '../../DB/ControladorBD.php';
-	
-	$Con = conectar();
+	//Connection to DB
+	include_once '../../DB/DB_driver.php';
+	$Con = connect();
+	//Select Operation
 	$SQL ='SELECT * FROM usuarios ORDER BY id_usuario DESC';
-	$resultado = consultar($Con,$SQL);
-
+	$Result = Consult($Con,$SQL);//Execute SQL statement
 	//Metodo buscar
 	if(isset($_POST['btn_buscar']))
 	{
 		$buscar_text=$_POST['buscar'];
 		
 		$SQL ="SELECT * FROM usuarios WHERE nombre LIKE '%$buscar_text%' OR apellido LIKE '%$buscar_text%';";
-		$resultado = consultar($Con,$SQL);
+		$Result = Consult($Con,$SQL);
 	}
 ?>
 
@@ -19,7 +19,7 @@
 <html lang="es">
 <head>
 	<meta charset="UTF-8">
-	<title>Inicio</title>
+	<title>Home</title>
 	<link rel="stylesheet" href="../../css/estilo.css">
 </head>
 <body>
@@ -46,19 +46,19 @@
 				<td>Tipo</td>
 				<td colspan="2">Acción</td>
 			</tr>
-			<?php foreach($resultado as $fila):?>
+			<?php foreach($Result as $Row):?>
 				<tr >
-					<td><?php echo $fila['id_usuario']; ?></td>
-					<td><?php echo $fila['username']; ?></td>
-					<td><?php echo $fila['contrasena']; ?></td>
-					<td><?php echo $fila['nombre']; ?></td>
-					<td><?php echo $fila['apellido']; ?></td>
-					<td><?php echo $fila['numero']; ?></td>
-					<td><?php echo $fila['correo']; ?></td>
-					<td><?php echo $fila['status']; ?></td>
-					<td><?php echo $fila['tipo']; ?></td>
-					<td><a href="update.php?id_usuario=<?php echo $fila['id_usuario']; ?>" class="btn__update" >Editar</a></td>
-					<td><a href="delete.php?id_usuario=<?php echo $fila['id_usuario']; ?>" class="btn__delete">Eliminar</a></td>
+					<td><?php echo $Row['id_usuario']; ?></td>
+					<td><?php echo $Row['username']; ?></td>
+					<td><?php echo $Row['contrasena']; ?></td>
+					<td><?php echo $Row['nombre']; ?></td>
+					<td><?php echo $Row['apellido']; ?></td>
+					<td><?php echo $Row['numero']; ?></td>
+					<td><?php echo $Row['correo']; ?></td>
+					<td><?php echo $Row['status']; ?></td>
+					<td><?php echo $Row['tipo']; ?></td>
+					<td><a href="update.php?id_usuario=<?php echo $Row['id_usuario']; ?>" class="btn__update" >Editar</a></td>
+					<td><a href="delete.php?id_usuario=<?php echo $Row['id_usuario']; ?>" class="btn__delete">Eliminar</a></td>
 				</tr>
 			<?php endforeach ?>
 		</table>

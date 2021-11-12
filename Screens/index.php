@@ -2,19 +2,19 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <title>Catalogo</title>
+  <title>Catalogue</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
   <link rel="stylesheet" href="css/swiper.min.css">
   <link rel="stylesheet" href="css/estilos.css">
 
 </head>
-<body id="Catalogo">
-  <a name="Inicio"></a>
+<body id="Catalogue">
+  <a name="Home"></a>
   <header>
     <img src="img/logo.png">
     <nav class="menu">
         <ul>
-          <li><a href="index.php">Inicio</a></li>
+          <li><a href="index.php">Home</a></li>
           <li><a href="#">Reservaciones</a></li>
           <li><a href="#">Mis Viajes</a></li>
           <li><a href="#">Contacto</a></li>
@@ -22,36 +22,36 @@
         </ul>
       </nav>
   </header>
-  <div class="mainCatalogo">
-    <!-- SLIDESHOW PRINCIPAL-->
+  <div class="mainCatalogue">
+    <!-- Main SLIDESHOW -->
     <div class="swiper-container slideshow1">
       <div class="swiper-wrapper wrapper1">
         <?php
-          include ('../admin/db/ControladorBD.php');
-          $Con = Conectar();
+          include ('../Manager/db/DB_driver.php');
+          $Con = connect();
           $SQL ="SELECT I.ruta,P.clave,P.destino,P.salida, P.id_paquete,P.descripcion,P.precio,P.vencimiento 
             FROM paquetes P, paquetes_img I 
             WHERE P.tipo = 1 AND P.clave = I.clave  AND I.id_paqueteIMG = P.id_paquete  AND P.disponibilidad >= 1 AND  P.status = 1; ";
-          $Resultado = Consultar($Con,$SQL);
+          $Result = Consult($Con,$SQL);
           //Procesar resultados
 
-          $n = mysqli_num_rows($Resultado); 
+          $n = mysqli_num_rows($Result); 
           for($F=0;$F<$n;$F++)
           {
 
-            $Fila = mysqli_fetch_row($Resultado);// Obt el num de filas de  un vect
+            $Row = mysqli_fetch_row($Result);// Obt el num de Rows de  un vect
 
             setlocale(LC_TIME, 'spanish');
-            $inicio = strftime("%d de %B del %Y", strtotime($Fila[7]));
+            $Home = strftime("%d de %B del %Y", strtotime($Row[7]));
             print("
               
-              <div class='swiper-slide slide1' style='background-image:url(paquetes_img/".$Fila[0].")'>
+              <div class='swiper-slide slide1' style='background-image:url(paquetes_img/".$Row[0].")'>
                 <div class='sb-description'>
-                  <h1>Viaja a ".$Fila[2]." saliendo de ".$Fila[3]."</h1>
-                  <p>Disfruta de unas fabulosas vacaciones por 3 dias en ".$Fila[2]." con gastos de ".$Fila[5]." incluidos. Disponible hasta el ".$inicio."</p><br>
+                  <h1>Viaja a ".$Row[2]." saliendo de ".$Row[3]."</h1>
+                  <p>Disfruta de unas fabulosas vacaciones por 3 dias en ".$Row[2]." con gastos de ".$Row[5]." incluidos. Disponible hasta el ".$Home."</p><br>
                   <form class='addCont'method='POST' action='#'>
-                    <input type='hidden'name='idVenta' value='".$Fila[4]."' required>
-                    <input type='hidden'name='claveVenta' value='".$Fila[1]."' required>
+                    <input type='hidden'name='idVenta' value='".$Row[4]."' required>
+                    <input type='hidden'name='claveVenta' value='".$Row[1]."' required>
                     <input class='verMas' type='submit' value='Ver mas'>
                   </form>
                 </div>
@@ -73,28 +73,28 @@
       <div class="swiper-wrapper wrapper2">
         <?php
          
-            $Con = Conectar();
+            $Con = connect();
             $SQL = "SELECT I.ruta,P.descripcion,P.destino,P.salida,P.precio, P.id_paquete, P.clave 
             FROM paquetes P, paquetes_img I 
             WHERE P.tipo = 2 AND P.clave = I.clave  AND I.id_paqueteIMG = P.id_paquete  AND P.disponibilidad >= 1 AND  P.status = 1; ";
-            $Resultado = Consultar($Con,$SQL);
+            $Result = Consult($Con,$SQL);
             //Procesar resultados
 
-            $n = mysqli_num_rows($Resultado); //Obten el numero de filas de  una relac.
+            $n = mysqli_num_rows($Result); //Obten el numero de Rows de  una relac.
 
             for($F=0;$F<$n;$F++)
             {
-              $Fila = mysqli_fetch_row($Resultado);// Obt el num de filas de  un vect
+              $Row = mysqli_fetch_row($Result);// Obt el num de Rows de  un vect
               print("
                 <div class='swiper-slide slide2'>
-                  <img src='paquetes_img/".$Fila[0]."'>
-                  <h3>".$Fila[1].$Fila[5]."</h3>
-                  <h1>Viaja a ".$Fila[2]." saliendo de ".$Fila[3]."</h1>
+                  <img src='paquetes_img/".$Row[0]."'>
+                  <h3>".$Row[1].$Row[5]."</h3>
+                  <h1>Viaja a ".$Row[2]." saliendo de ".$Row[3]."</h1>
                   <h5>Precio por persona</h5>
-                  <h4>MXN$</h4><h2>".$Fila[4]."</h2>
+                  <h4>MXN$</h4><h2>".$Row[4]."</h2>
                   <form class='addCont'method='POST' action='#'>
-                    <input type='hidden'name='idVenta' value='".$Fila[5]."' required>
-                    <input type='hidden'name='claveVenta' value='".$Fila[6]."' required>
+                    <input type='hidden'name='idVenta' value='".$Row[5]."' required>
+                    <input type='hidden'name='claveVenta' value='".$Row[6]."' required>
                     <input class='verMas' type='submit' value='Ver mas'>
                   </form>
                 </div>");
@@ -112,7 +112,7 @@
       </div>
       <div class="partFooter">
         <h4>Hotel & Resort</h4>
-        <a href="index.php">Inicio</a>
+        <a href="index.php">Home</a>
       </div>
       <div class="partFooter">
         <h4>Acerca de</h4>
