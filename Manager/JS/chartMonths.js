@@ -1,6 +1,6 @@
 function drawLastMonth(data) {
   var dato=JSON.parse(data);
-  //Fecha de actualización
+  //date_visit de actualización
   var now = new Date();
   var dateMonths= now.toDateString();
   var updateMonths =document.querySelector("#updateMonthsVisitasChart");

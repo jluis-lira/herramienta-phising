@@ -17,7 +17,7 @@
           <li><a href="index.php">Home</a></li>
           <li><a href="#">Reservaciones</a></li>
           <li><a href="#">Mis Viajes</a></li>
-          <li><a href="#">Contacto</a></li>
+          <li><a href="#">Contact</a></li>
           <li><a href="#">Nosotros</a></li>
         </ul>
       </nav>
@@ -31,7 +31,7 @@
           $Con = connect();
           $SQL ="SELECT I.ruta,P.clave,P.destino,P.salida, P.id_paquete,P.descripcion,P.precio,P.vencimiento 
             FROM paquetes P, paquetes_img I 
-            WHERE P.tipo = 1 AND P.clave = I.clave  AND I.id_paqueteIMG = P.id_paquete  AND P.disponibilidad >= 1 AND  P.status = 1; ";
+            WHERE P.type = 1 AND P.clave = I.clave  AND I.id_paqueteIMG = P.id_paquete  AND P.disponibilidad >= 1 AND  P.status = 1; ";
           $Result = Consult($Con,$SQL);
           //Procesar resultados
 
@@ -76,7 +76,7 @@
             $Con = connect();
             $SQL = "SELECT I.ruta,P.descripcion,P.destino,P.salida,P.precio, P.id_paquete, P.clave 
             FROM paquetes P, paquetes_img I 
-            WHERE P.tipo = 2 AND P.clave = I.clave  AND I.id_paqueteIMG = P.id_paquete  AND P.disponibilidad >= 1 AND  P.status = 1; ";
+            WHERE P.type = 2 AND P.clave = I.clave  AND I.id_paqueteIMG = P.id_paquete  AND P.disponibilidad >= 1 AND  P.status = 1; ";
             $Result = Consult($Con,$SQL);
             //Procesar resultados
 
@@ -106,19 +106,20 @@
       <div class="swiper-scrollbar"></div>
     </div>
   </div>
-  <footer id="contacto">
-      <div class="partFooter">
+  <!-- FOOTER -->
+  <footer id="contact">
+      <div class="section-footer">
         <img src="img/logo.png" alt="">
       </div>
-      <div class="partFooter">
+      <div class="section-footer">
         <h4>Hotel & Resort</h4>
         <a href="index.php">Home</a>
       </div>
-      <div class="partFooter">
+      <div class="section-footer">
         <h4>Acerca de</h4>
         <a href="#">Hotel & Resort</a>
       </div>
-      <div class="partFooter">
+      <div class="section-footer">
           <h4>Redes sociales</h4>
           <div class="social-media">
               <a href="#">f</a>
@@ -126,7 +127,7 @@
       </div>
     </footer>
   <script src="js/swiper.min.js"></script>
-    <!-- SCRIPTS DE LOS SLIDESHOW-->
+    <!-- SLIDESHOW'S SCRIPTS-->
   <script>
     var swiper = new Swiper('.slideshow1', {
       effect: 'coverflow',

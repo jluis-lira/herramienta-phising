@@ -19,16 +19,16 @@
 
     //Consult Visitas últimos 15 Dias
     //******La funcion DATE_FORMATE depende del DBM*****
-    $SQLdays="SELECT DATE_FORMAT(fecha,'%b %d') AS Dia,COUNT(DAY(fecha)) AS Visitas 
-    FROM engagement WHERE fecha BETWEEN '$days15ago' AND now() GROUP by Dia Order by fecha;";
+    $SQLdays="SELECT DATE_FORMAT(date_visit,'%b %d') AS Dia,COUNT(DAY(date_visit)) AS Visitas 
+    FROM engagement WHERE date_visit BETWEEN '$days15ago' AND now() GROUP by Dia Order by date_visit;";
     $dataDays= mysqli_fetch_all(Consult($Con,$SQLdays));
     //Consult Visitas últimos 6 meses
-    $SQLmonths="SELECT DATE_FORMAT(fecha,'%b %Y') AS Mes,COUNT(MONTH(fecha)) AS Visitas 
-    FROM engagement WHERE fecha BETWEEN '$months6ago' AND now() GROUP by Mes Order by fecha;";
+    $SQLmonths="SELECT DATE_FORMAT(date_visit,'%b %Y') AS Mes,COUNT(MONTH(date_visit)) AS Visitas 
+    FROM engagement WHERE date_visit BETWEEN '$months6ago' AND now() GROUP by Mes Order by date_visit;";
     $dataMonths= mysqli_fetch_all(Consult($Con,$SQLmonths));
     //Consult Visitas en una hora especifica durante los últimos 6 meses
-    $SQLhours="SELECT DATE_FORMAT(fecha,'%H h') AS hora, COUNT(HOUR(fecha)) AS Visitas 
-    FROM engagement WHERE fecha BETWEEN '$months6ago' AND now() GROUP by hora ORDER BY hora;";
+    $SQLhours="SELECT DATE_FORMAT(date_visit,'%H h') AS hora, COUNT(HOUR(date_visit)) AS Visitas 
+    FROM engagement WHERE date_visit BETWEEN '$months6ago' AND now() GROUP by hora ORDER BY hora;";
     $dataHours= mysqli_fetch_all(Consult($Con,$SQLhours));
     
     //Asignacion de Valores

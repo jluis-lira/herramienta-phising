@@ -1,6 +1,6 @@
 function drawLastDays(data) {
   var dato=JSON.parse(data);
-  //Fecha de actualización
+  //date_visit de actualización
   var now = new Date();
   var dateDays= now.toString();
   var updateDays =document.querySelector("#updateDaysVisitasChart");

@@ -1,12 +1,12 @@
 <?php
 	function  connect (){
-		$Result = parse_ini_file("ConfigBD.ini");
-		$Server=$Result['Servidor'];
-		$User=$Result['Usuario'];
+		$Result = parse_ini_file("DB_setup.ini");
+		$Server=$Result['Server'];
+		$User=$Result['User'];
 		$Password=$Result['Password'];
-		$BD=$Result['BD'];
+		$DB=$Result['DB'];
 
-		$Con = mysqli_connect($Server,$User,$Password,$BD);
+		$Con = mysqli_connect($Server,$User,$Password,$DB);
 		return $Con;
 	}
 
@@ -20,25 +20,24 @@
 	}
 
 	function engagement (){
-        //Visitas
+        //Visits
 		$Con = connect();
 		date_default_timezone_set("America/Mexico_city");
 		$ip = $_SERVER['REMOTE_ADDR'];
 		$SQL ="SELECT * FROM engagement WHERE ip='$ip' ORDER BY id_visit DESC;";
-		$Respuesta = Consult($Con,$SQL);
-		$Registros = mysqli_num_rows($Respuesta);
+		$Registros = mysqli_num_rows(Consult($Con,$SQL));
 
 		if($Registros==0){
-		$SQL ="INSERT INTO engagement (ip,fecha) VALUES ('$ip',now());";
+		$SQL ="INSERT INTO engagement (ip,date_visit) VALUES ('$ip',now());";
 		Consult($Con,$SQL);				
 		}else{
-            $row=mysqli_fetch_row($Respuesta);
+            $row=mysqli_fetch_row($Registros);
             $fRegistro=$row[2];
             $fActual=date("Y-m-d H:i:s");
             $fNueva=strtotime($fRegistro."+1 hour");
             $fNueva=date("Y-m-d H:i:s",$fNueva);
             if($fActual>=$fNueva){
-              $SQL ="INSERT INTO engagement (ip,fecha) VALUES ('$ip',now());";
+              $SQL ="INSERT INTO engagement (ip,date_visit) VALUES ('$ip',now());";
               Consult($Con,$SQL);
             }
           }

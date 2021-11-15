@@ -1,4 +1,4 @@
-function confirmacion(e) {
+function validate(e) {
     if (confirm("Estas seguro que desea eliminar este registro?"))
     {
         return true;
@@ -9,9 +9,9 @@ function confirmacion(e) {
     }
 } 
 
-let linkDelete = document.querySelectorAll(".btn__delete");
+let linkDelete = document.querySelectorAll(".btn_delete");
 
 for (var i = 0; i < linkDelete.length; i++) 
 {
-    linkDelete[i].addEventListener("click", confirmacion);
+    linkDelete[i].addEventListener("click", validate);
 }

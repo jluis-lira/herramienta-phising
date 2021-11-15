@@ -13,7 +13,7 @@ body{
 a{
     text-decoration: none;
 }
-.contenedor{
+.cont_modify{
     width: 90%;
     max-width: 1500px;
     margin: 30px auto;
@@ -32,19 +32,19 @@ h2{
     color: #555;
 }
 
-.barra__buscador{
+.search_bar{
     width: 100%;
     margin-top: 50px;
     margin-bottom: 10px;
 }
 
-.formulario{
+.search_form{
     display: flex;
     width: 100%;
     overflow: hidden;
 }
 
-form .input__text{
+form .input_txt{
     width: 100%;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -60,7 +60,7 @@ form .input__text{
 }
 
 
-form .input__text:focus{
+form .input_txt:focus{
     border: 1px solid #1b743c;
 }
 form .form-group{
@@ -70,7 +70,7 @@ form .form-group{
     justify-content: space-between;
 }
 
-form .form-group .input__text{
+form .form-group .input_txt{
     max-width: 45% !important;
 }
 
@@ -89,21 +89,21 @@ form .btn{
     outline: medium none;
     cursor: pointer;
 }
-.btn__nuevo{
+.btn_new{
     float: right;
     background: #1b743c !important;
 }
 
-.btn__group{
+.form_edit{
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
 }
-.btn__primary{
+.btn_primary{
     background: rgb(3, 113, 163);
 }
-.btn__danger{
+.btn_cancel{
     background: #8a0505 !important;
 }
 
@@ -132,7 +132,7 @@ table tr td{
     color: #555;
 }
 
-.btn__update{
+.btn_update{
     display: inline-block;
     font-size: 14px;
     background: #1b743c;
@@ -141,7 +141,7 @@ table tr td{
     padding: 5px 10px;
 }
 
-.btn__delete{
+.btn_delete{
     display: inline-block;
     font-size: 14px;
     background: #8a0505;
