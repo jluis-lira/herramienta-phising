@@ -1,15 +1,18 @@
+//This function receives and converts data to display graphs
 function drawLastMonth(data) {
-  var dato=JSON.parse(data);
-  //date_visit de actualización
+  var dato=JSON.parse(data);//Data conversion 
+  var maxVisits=2*Math.max(dato[1][0].visits, dato[1][1].visits, dato[1][2].visits, 
+    dato[1][3].visits, dato[1][4].visits, dato[1][5].visits);
+  //Data query date
   var now = new Date();
   var dateMonths= now.toDateString();
   var updateMonths =document.querySelector("#updateMonthsVisitasChart");
   updateMonths.innerHTML+=dateMonths;
   // Set new default font family and font color to mimic Bootstrap's default styling
-  Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+  Chart.defaults.global.defaultFontFamily = 
+  '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
   Chart.defaults.global.defaultFontColor = '#292b2c';
-
-  // Bar Chart Example
+//Bar Chart
   var ctx = document.getElementById("myBarChart");
   var myLineChart = new Chart(ctx, {
     type: 'bar',
@@ -58,7 +61,7 @@ function drawLastMonth(data) {
           ticks: {
             min: 0,
             max: 200,
-            maxTicksLimit: 6
+            maxTicksLimit: 10
           },
           gridLines: {
             display: true

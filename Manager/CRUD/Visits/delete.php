@@ -7,7 +7,7 @@
 	{//Get ID_VISIT to Delete
 		$id_visit=(int) $_GET['id_visit'];
 		//SQL statement to delete record
-		$SQL ="DELETE FROM Users WHERE id_visit =$id_visit";
+		$SQL ="DELETE FROM engagement WHERE id_visit=$id_visit;";
 		$Result = Consult($Con,$SQL);//Execute SQL statement
 		header('Location: index.php');
 	}else{

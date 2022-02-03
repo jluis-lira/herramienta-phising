@@ -1,17 +1,11 @@
 function validate(e) {
-    if (confirm("Estas seguro que desea eliminar este registro?"))
-    {
+    if (confirm("¿Estás seguro que desea eliminar este registro?")){
         return true;
-    }
-    else 
-    {
+    }else {
         e.preventDefault();
     }
 } 
-
 let linkDelete = document.querySelectorAll(".btn_delete");
-
-for (var i = 0; i < linkDelete.length; i++) 
-{
+for (var i = 0; i < linkDelete.length; i++) {
     linkDelete[i].addEventListener("click", validate);
 }

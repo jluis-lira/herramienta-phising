@@ -1,6 +1,10 @@
+//This function receives and converts data to display graphs
 function drawLastDays(data) {
-  var dato=JSON.parse(data);
-  //date_visit de actualización
+  var dato=JSON.parse(data);//Data conversion
+  var maxVisits = 2*Math.max(dato[0][0].visits,dato[0][1].visits,dato[0][2].visits,dato[0][3].visits,dato[0][4].visits,
+    dato[0][5].visits,dato[0][6].visits,dato[0][7].visits,dato[0][8].visits,dato[0][9].visits,
+    dato[0][10].visits,dato[0][11].visits,dato[0][12].visits,dato[0][13].visits,dato[0][14].visits); 
+  //Data query date
   var now = new Date();
   var dateDays= now.toString();
   var updateDays =document.querySelector("#updateDaysVisitasChart");
@@ -8,7 +12,7 @@ function drawLastDays(data) {
   // Set new default font family and font color to mimic Bootstrap's default styling
   Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
   Chart.defaults.global.defaultFontColor = '#292b2c';
-  // Area Chart Example
+  // Area Chart
   var ctx = document.getElementById("myVisitasChart");
   var myLineChart = new Chart(ctx, {
     type: 'line',
@@ -49,8 +53,8 @@ function drawLastDays(data) {
         yAxes: [{
           ticks: {
             min: 0,
-            max: 15,
-            maxTicksLimit: 6
+            max: maxVisits,
+            maxTicksLimit: 10
           },
           gridLines: {
             color: "rgba(0, 0, 0, .125)",

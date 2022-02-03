@@ -1,25 +1,3 @@
-*{
-    padding: 0;
-    margin: 0px;
-    box-sizing: border-box;
-}
-
-body{
-    font-family: 'Arial',sans-serif;
-    font-size: 16px;
-    background: #f2f2f2;
-}
-
-a{
-    text-decoration: none;
-}
-.cont_modify{
-    width: 90%;
-    max-width: 1500px;
-    margin: 30px auto;
-    overflow: hidden;
-
-}
 
 h2{
     display: block;
@@ -31,19 +9,15 @@ h2{
     font-weight: bold;
     color: #555;
 }
-
 .search_bar{
     width: 100%;
-    margin-top: 50px;
     margin-bottom: 10px;
 }
-
 .search_form{
     display: flex;
     width: 100%;
     overflow: hidden;
 }
-
 form .input_txt{
     width: 100%;
     border: 1px solid #ccc;
@@ -58,8 +32,6 @@ form .input_txt{
     margin-right: 10px;
     outline: medium none;
 }
-
-
 form .input_txt:focus{
     border: 1px solid #1b743c;
 }
@@ -69,12 +41,9 @@ form .form-group{
     flex-wrap: nowrap;
     justify-content: space-between;
 }
-
 form .form-group .input_txt{
     max-width: 45% !important;
 }
-
-
 form .btn{
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -93,7 +62,6 @@ form .btn{
     float: right;
     background: #1b743c !important;
 }
-
 .form_edit{
     width: 100%;
     display: flex;
@@ -106,14 +74,11 @@ form .btn{
 .btn_cancel{
     background: #8a0505 !important;
 }
-
-
 /* table */
 table{
     width: 100%;
     border-collapse: collapse;
 }
-
 table .head{
     background: rgb(3, 113, 163);
 }
@@ -124,14 +89,12 @@ table .head td{
     font-size: 15px;
     text-align: center;
 }
-
 table tr td{
     border:1px solid #ccc;
     padding: 7px;
     font-size: 14px;
     color: #555;
 }
-
 .btn_update{
     display: inline-block;
     font-size: 14px;
@@ -140,7 +103,6 @@ table tr td{
     border-radius: 5px;
     padding: 5px 10px;
 }
-
 .btn_delete{
     display: inline-block;
     font-size: 14px;
@@ -149,4 +111,3 @@ table tr td{
     border-radius: 5px;
     padding: 5px 10px;
 }
-

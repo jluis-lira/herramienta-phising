@@ -1,11 +1,20 @@
+//This function receives and converts data to display graphs
 function drawHours(data) {
-  var dato=JSON.parse(data);
-  //date_visit de actualización
+  var dato=JSON.parse(data);//Data conversion   
+  var maxVisits= 2*Math.max(dato[2][0].visits,dato[2][1].visits,dato[2][2].visits,dato[2][3].visits,dato[2][4].visits,
+    dato[2][5].visits,dato[2][6].visits,dato[2][7].visits,dato[2][8].visits,dato[2][9].visits,
+    dato[2][10].visits,dato[2][11].visits,dato[2][12].visits,dato[2][13].visits,dato[2][14].visits,
+    dato[2][15].visits,dato[2][16].visits,dato[2][17].visits,dato[2][18].visits,dato[2][19].visits,
+    dato[2][20].visits,dato[2][21].visits,dato[2][22].visits,dato[2][23].visits);
+  //Data query date
   var now = new Date();
+  var dateHours= now.toDateString();
+  var updateHours =document.querySelector("#updateHoursVisitasChart");
+  updateHours.innerHTML+=dateHours;
   // Set new default font family and font color to mimic Bootstrap's default styling
   Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
   Chart.defaults.global.defaultFontColor = '#292b2c';
-  // Area Chart Example
+  // Area Chart
   var ctx = document.getElementById("trendsVisitsChart");
   var myLineChart = new Chart(ctx, {
     type: 'line',
@@ -50,7 +59,7 @@ function drawHours(data) {
         yAxes: [{
           ticks: {
             min: 0,
-            max: 50,
+            max: maxVisits,
             maxTicksLimit: 10
           },
           gridLines: {
